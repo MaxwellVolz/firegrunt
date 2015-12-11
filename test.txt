@@ -2196,3 +2196,7 @@
 [15:56:40] <burntdeath1> <Stashed> (normal) Amn Rune
 [16:03:51] <burntdeath1> <Kept> (unique) Ring (49) | Unidentified
 [16:03:51] <burntdeath1> <Stashed> (unique) Ring
+[16:03:51] <burntdeath1> <Stashed> (unique) Ring
+[16:03:51] <burntdeath1> <Stashed> (unique) Ring
+[16:03:51] <burntdeath1> <Stashed> (unique) Ringer
+[16:03:51] <burntdeath1> <Stashed> (unique) Ringers

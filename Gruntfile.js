@@ -39,34 +39,91 @@ module.exports = function(grunt) {
 			latest = [];
 
 		ref.on("value", function(snapshot) {
-			console.log(snapshot.val().drops);
+			//console.log(snapshot.val().drops);
 			}, function (errorObject) {
 				console.log("The read failed: " + errorObject.code);
 		});
 
 
-		
-
-
 		msg.time = Firebase.ServerValue.TIMESTAMP;
 
 
-		// testing begin
+  		var glyphClass = function(y){
+  			if(y == null){
+  				return 'glyphicon glyphicon-flag';
+  			}
+  			var x = y.toString();
+  			var output = "",
+  				first = x.indexOf('<')+1 || 0,
+  				last = x.indexOf('>') || 0,
+  				blade = x.substring(first, last);
 
-		var usersRef = ref.child("drops");
-			usersRef.set({
-			  alanisawesome: {
-			    date_of_birth: "June 23, 1912",
-			    full_name: "Alan Turing"
-			  },
-			  gracehop: {
-			    date_of_birth: "December 9, 1906",
-			    full_name: "Grace Hopper"
-			  }
-		});
-  		// end of testing stuff
+  			switch(blade){
+  				case 'Stashed':
+  					//things
+  					output = "glyphicon glyphicon-briefcase";
+  					break;
+  				case 'Kept':
+  					//things
+  					output = "glyphicon glyphicon-ok";
+  					break;
+  				case 'No room for':
+  					//things
+  					output = "glyphicon glyphicon-remove";
+  					break;
+  				case 'Dropped':
+  					//things
+  					output = "glyphicon glyphicon-map-marker";
+  					break;
+  				case 'Cubing Kept':
+  					//things
+  					output = "glyphicon glyphicon-gift";
+  					break;
+  				default:
+  					output = "glyphicon glyphicon-flag";
+  			}
+  			
+  			return output;
+  		};
+  		var actionText = function(y){
+  			if(y == null){
+  				return 'glyphicon glyphicon-flag';
+  			}
+  			var x = y.toString(),
+  				first = x.indexOf('<')+1 || 0,
+  				last = x.indexOf('>') || 0,
+  				output = x.substring(first, last);
 
 
+  			return output;
+  		};
+  		var itemName = function(y){
+  			if(y == null){
+  				return 'Item Name';
+  			}	
+  			var x = y.split(')')[1].split('(')[0];
+
+  			return x;
+  			
+
+  		};
+  		var qualityClass = function(y){
+  			if(y == null){
+  				return 'normal';
+  			}
+  			var x = y.split('> (')[1].split(')')[0];
+  			// console.log("x");
+  			// console.log(x);
+  			return x;
+
+  		};
+  		var extraStuff = function(y){
+  			if(y == null){
+  				return 'Attributes';
+  			}
+  			var x = y.split('|  | ')[1] || "";
+  			return x;
+  		}
 
   		
 
@@ -81,35 +138,25 @@ module.exports = function(grunt) {
 		    for(i in array) {
 		    	
 		    	item = {
-		    		time:array[i].split(' <burntdeath1> ')[0] || "",
-		    		other:array[i].split(' <burntdeath1> ')[1] || "",
+		    		time:array[i].split(' <burntdeath1> ')[0] || "Time",
+		    		actionSymbol:glyphClass(array[i].split(' <burntdeath1> ')[1]),
+		    		action:actionText(array[i].split(' <burntdeath1> ')[1]),
+		    		desc:itemName(array[i].split(' <burntdeath1> ')[1]),
+		    		quality:qualityClass(array[i].split(' <burntdeath1> ')[1]),
+		    		extra:extraStuff(array[i].split(' <burntdeath1> ')[1]),
+		    		other:array[i].split(' <burntdeath1> ')[1] || "Item"
 		    		// quality:array[i].split('<')[1].split('>')[0] || ""
 		    	}
-
-		    	// item['time'] = array[i].split(' <burntdeath1> ')[0];
-		    	// item['other'] = array[i].split(' <burntdeath1> ')[1];
-		    	// item['quality'] = array[i].split('(')[0].split(')')[0];
 
 		    	items.push(item);
 		    	item = {};
 		        //console.log(array[i]);
 		    }
-		    console.log("items");
-		    console.log(items);
-
-		    var aL = array.length - 2,
-		    	timeX = array[aL].split(' <burntdeath1> ')[0],
-		    	otherX = array[aL].split(' <burntdeath1> ')[1];
-
-
-
+		    //console.log("items");
+		    //console.log(items);
 
 		    var usersRef = ref.child("drops");
 			usersRef.set(
-				// timeX:{
-				// 	time: timeX,
-				// 	other: otherX
-				// }
 				items
 			);
 
@@ -117,10 +164,6 @@ module.exports = function(grunt) {
 		    //
 	   		// and push to db if more recent		  
 
-		    // console.log("al: " + aL);
-		    // console.log("Last Entry was ");
-		    // console.log(array[aL].split(' <burntdeath1> ')[0]);
-		    // console.log("or not.");
 
 		    // grunt.log.writeln(target + ': ' + filepath + ' has ' + action + 'array[0]:' + array[0] + 'arrayL: ' + array.length);
 		    grunt.log.writeln(target + ': ' + filepath + ' has ' + action + 'arrayL: ' + array.length);
