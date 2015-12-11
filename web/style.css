@@ -5,7 +5,14 @@ body{
 	padding-left:5%;
 }
 
+@font-face {
+    font-family: diabloFont;
+    src: url(fonts/exocet.TTF);
+}
 
+div {
+    font-family: diabloFont;
+}
  
 div.row{
 padding-top:10px;
