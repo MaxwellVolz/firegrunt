@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+		<script src="https://code.angularjs.org/1.3.8/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<!-- Optional theme -->
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
+		<script src="main.js"></script>
+		<link href="style.css" rel="stylesheet" />
+	</head>
+	<body ng-app="simpleChat" ng-controller="MessagesCtrl">
+		<div class="jumbotron">
+			<div class="row">
+				<p class="col-xs-12 col-sm-12 col-md-12" style="text-align:center">ItemLog<br>
+				</p>
+			</div>
+			</h1>
+		</div>
+		<div>
+			
+			<!-- <div class="row">
+				<input ng-model="newMessage.text" ng-keyup="handleKeyup($event)" class="col-xs-12 col-sm-12 col-md-12">
+			</div> -->
+
+				<table class="table table-striped">
+				    <!-- <thead>
+					    <tr>
+					        <th>Time</th>
+					        <th>Other</th>
+					        <th>Time</th>
+					    </tr>
+				    </thead> -->
+				    <tbody>
+						<tr ng-repeat="item in data.drops.slice().reverse()" class="" > 
+						<!-- <div ng-repeat="item in data.drops | orderObjectBy:'time':true" class="alert alert-info" >  -->
+							<td>{{ item.time }}</td>
+							<td ><span class="{{item.actionSymbol}}" aria-hidden="true" title="{{item.action}}"></span></td>
+							<td><span class="{{item.quality}}">{{ item.desc }}</span></td>
+							<td>{{ item.extra }}</td>
+							
+						</tr>
+					</tbody>
+				</table>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+
+body{
+    background-color: #FFFFFF;
+	width:90%;
+	padding-left:5%;
+}
+
+
+ 
+div.row{
+padding-top:10px;
+}
+
+div.alert{
+margin-top:8px;
+display: block;}
+
+
+
+img#logo{
+display: block;
+margin-left:auto;
+margin-right:auto;
+padding-top:40px;
+width:600px;
+}
+div.jumbotron{
+padding-top:0px;
+}
+
